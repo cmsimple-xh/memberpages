@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Memberpages" default="help">
+
+    <target name="help" description="lists available targets">
+        <exec command="phing -l" outputProperty="help"/>
+        <echo>${help}</echo>
+    </target>
+
+    <target name="build" description="builds distributable ZIP archive">
+        <fail unless="version" message="version is not defined!"/>
+        <exec command="git archive -o export.tar HEAD" checkreturn="true"/>
+        <untar file="export.tar" todir="export"/>
+        <delete file="export.tar"/>
+        <move todir="dist/plugins/memberpages">
+            <fileset dir="export">
+                <exclude name="build.xml"/>
+                <exclude name="composer.*"/>
+                <exclude name="pax_global_header"/>
+            </fileset>
+        </move>
+        <mkdir dir="dist/userfiles/plugins/memberpages"/>
+        <copy file="dist/plugins/memberpages/htaccess.tpl"
+              tofile="dist/userfiles/plugins/memberpages/.htaccess"/>
+        <delete dir="export"/>
+        <zip destfile="memberpages_XH_${version}.zip" basedir="dist"/>
+        <delete dir="dist"/>
+    </target>
+
+</project>
