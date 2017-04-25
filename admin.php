@@ -23,10 +23,9 @@ if (function_exists('XH_registerPluginMenuItem')) {
         $pth['file']['plugin_help'],'_blank');
 }
 
-initvar('memberpages');
-
-if($memberpages)
-{
+if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministration('memberpages')
+   || isset($memberpages) && $memberpages === 'true'
+) {
     $plugin = basename(dirname(__FILE__),"/");
     $admin  = isset($_POST['admin']) ? $_POST['admin'] : $admin = isset($_GET['admin']) ? $_GET['admin'] : '';
     $action = isset($_POST['action']) ? $_POST['action'] : $action = isset($_GET['action']) ? $_GET['action'] : '';
