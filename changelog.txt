@@ -3,6 +3,8 @@ C H A N G E L O G memberpages Plugin for CMSimple(_XH))
 =============================================
 Series 3 by Svasti (svasti.de)
 ---------------------------------------------
+3.6.2 Apr 2017
+    - see <https://github.com/cmsimple-xh/memberpages/milestone/1?closed=1>
 3.6.1 Feb 2016
     - Small bugfix (reported by Ludwig)
 3.6 Feb 2016
