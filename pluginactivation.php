@@ -437,9 +437,9 @@ function memberpages_CheckPermissions($path='')
         file_put_contents($path.'membersfile.php',
          ';<?php' . PHP_EOL . ';die();' . PHP_EOL . ';/*' . PHP_EOL);
 
-    if(!is_file($path.'.htaccess') || filesize($path.'.htaccess') < 10)
-        file_put_contents($path.'.htaccess',
-        'order deny,allow' . "\n" . 'deny from all' . "\n");
+    if(!is_file($path.'.htaccess') || filesize($path.'.htaccess') < 10) {
+        copy("{$pth['folder']['plugins']}memberpages/htaccess.tpl", "{$path}.htaccess");
+    }
     $x = memberpages_CheckFile($path.'.htaccess');
     $error['notwritable'] .= $x['notwritable'];
     $error['missing'] .= $x['missing'];
