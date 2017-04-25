@@ -1,0 +1,254 @@
+#memberlist {
+    font-weight:bold;
+}
+
+.membp_member,
+input.membp_member,
+input.membp_member[type="text"],
+input.membp_member[type="text"]:focus
+ {
+    background-color: #f6f6f6;
+    color: black;
+    border: 1px solid #999;
+
+}
+.membp_memberspanel {
+    margin:1em auto;
+    color:black;
+    font-weight:normal;
+    text-align: left;
+    width:100%;
+    max-width: 40em;
+    border-collapse: separate;
+    border-spacing:5px;
+
+}
+.membp_memberspanel td {
+    width:50%;
+    padding:1em 0 0 0 ;
+    vertical-align: middle;
+    color:black;
+}
+.membp_memberspanel td input,
+.membp_memberspanel td input:focus,
+.membp_memberspanel td button,
+.membp_message form input,
+.membp_memberspanel textarea  {
+    width:100%;
+    padding:0;
+}
+#p_VIP_access input {
+    width:auto;
+}
+p#p_VIP_access {
+    margin:0;
+}
+.membp_memberspanel td input[type="submit"],
+.membp_memberspanel td button {
+    cursor: pointer;
+    white-space:normal;
+}
+.membp_log {
+    padding:3px;
+    background:#fafafa;
+    height:35em;
+    width:100%;
+}
+.membp_changes  {
+    background:#d99;
+}
+
+.membp_member_button {
+    margin: .6em 0 0;
+    cursor: pointer;
+}
+.membp_small {
+/* for text: automatic login */
+    font-size:85%;
+}
+.membp_pluginname {
+    text-align:right;
+    font-size:80%;
+    margin:0;
+    line-height:1;
+}
+.membp_pluginname2 {
+    text-align:right;
+    font-size:80%;
+    margin:0;
+}
+.membp_small_button {
+    border:none;
+    background:none;
+    font-size: 85%;
+    color:inherit;
+    cursor: pointer;
+    padding:0;
+}
+.membp_small_button:hover {
+    color:red;
+}
+.membp_buttonpressed,
+input[type="submit"].membp_buttonpressed {
+    background-color:#cff !important;
+    border-style: inset;
+    white-space:normal;
+    color:black !important;
+    cursor: pointer;
+}
+.membp_registerme {
+    cursor: pointer;
+    letter-spacing: .05em;
+    padding:0 1em;
+}
+.membp_config,
+.membp_config td select,
+.membp_config td textarea,
+.membp_config td input,
+.membp_config td input:focus {
+    width: 100%;
+    padding:0;
+}
+.membp_configtable {
+    width: 100%;
+    background: #f6f6f6;
+    border: 1px solid #999;
+    padding: 0 6px 6px 6px;
+}
+.membp_configtable th {
+    font-weight: bold;
+    color:black;
+    text-align:left;
+    font-size:14px;
+}
+.membp_configtable td {
+    color:black;
+    padding-bottom:.5em;
+    font-size:12px;
+}
+.membp_configtable input {
+    margin:0;
+    padding:0;
+    font-size:14px;
+}
+.membp_configtable input:focus {
+    font-size:14px;
+}
+.membp_admin td {
+    padding-bottom:.5em;
+}
+.membp_admin td h5{
+    margin:0;
+    line-height:1;
+}
+.membp_admin tr>td {
+    padding-right:.5em;
+}
+
+.membp_message {
+    background: #eee;
+    text-align: center;
+    color: #900;
+    font-weight: 600;
+    padding: 1em;
+    border: 3px solid #c70;
+    margin: 5px 0;
+}
+.membp_message div {
+    border: 3px solid #da5;
+    margin: 1em 0;
+    padding:1em;
+    text-align:left;
+    color:black;
+    font-weight:normal;
+    line-height:1.4;
+    color:black;
+}
+.membp_message textarea {
+    width:100%;
+    box-sizing:border-box;
+    background:white;
+}
+
+.membp_button_pressed  {
+    color: #a00;
+    border-style:inset;
+    background:#eee;
+}
+a.membp_selected {
+    font-weight:bold;
+}
+.membp_form {
+    margin-bottom:30em;
+}
+.membp_form h1 {
+    margin-top:0 !important;
+    padding-top:0;
+}
+.membp_form h5 {
+    margin:1em 0 .5em;
+    padding-top:0;
+}
+#membp_saved, #membp_saved2 {
+    visibility:hidden;
+    font-size:14px;
+    padding:0 .5em;
+    margin-left: .5em;
+    font-weight:normal;
+    color:#060;
+    letter-spacing:.05em;
+    background:#dfd;
+}
+.membp_warning {
+    background:yellow;
+    color:black;
+}
+input.membp_readonly {
+    border:none;
+    background: #f6f6f6 !important;
+}
+.membp_justify {
+    text-align:justify;
+}
+.membp_oneline {
+    white-space: normal;
+    margin-bottom:1em;
+}
+.membp_oneline div,
+.membp_oneline form {
+    display: inline-block;
+}
+.membp_oneline button {
+    padding:0;
+    line-height:1;
+    cursor: pointer;
+}
+.membp_anchor {
+    display: block;
+    position: relative;
+    top: -100px;
+    visibility: hidden;
+}
+@media screen and (max-width:780px) {
+    .membp_registerme, .membp_member_button {
+        padding:.5em;
+        margin: 1em 0 0;
+    }
+}
+/* ========== Font ============ */
+.membp_member,
+input.membp_member,
+input.membp_member[type="text"],
+input.membp_member[type="text"]:focus
+ {
+    font-family:Consolas, monospace;
+}
+.membp_memberspanel td input,
+.membp_memberspanel td input:focus,
+.membp_message form input,
+.membp_memberspanel textarea ,
+.membp_log,
+.membp_config td input
+ {
+    font: 11pt/1.4 Consolas, monospace;
+}

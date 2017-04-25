@@ -1,0 +1,228 @@
+C H A N G E L O G memberpages Plugin for CMSimple(_XH))
+
+=============================================
+Series 3 by Svasti (svasti.de)
+---------------------------------------------
+3.6.1 Feb 2016
+    - Small bugfix (reported by Ludwig)
+3.6 Feb 2016
+    - Changed an anonymous function call which worked only in php 5.3 to 'create_function' 
+      which also works in php 5.2 (Solution by Holger)
+    - Added possibility to hide pages on login (i.e. the login page), suggested by Volkmar
+    - Wrong input in login field will return to the login field (via anchor) with error notice,
+      useful for one page solutions, suggested by Ludwig
+    - removed all settings for page on error (entry of false username or password) as this seems 
+      rather troublesome when a member made a typing error
+    - removed all "tag"-function calls
+    - works with PHP 7 and XH 1.7
+    - added option for members notice after login on top of optionally every page or only member pages
+    - Autologin now as checkbox (with noscript handling), when autologin enabled no logout button
+    - Register me and submit button get bigger on small screens
+    - Security requirements for new password entered by the user can be set to different degrees
+    - New Slovak language file by Tata
+
+3.5.2 August 2015
+    - Additional access-setting: VIP access pages with equal or lower levels
+      while non-VIPs can only access pages with same or no level (requested by mhz)
+    - Bugfix (VIP function in non-German sites was affected)
+    - Some wordings improved
+    - Ready for php 7 (needed a fix in the memberlist.php from cmb and a fix in the password generator)
+
+3.5.1 Apr 2015
+    - bug fix in plugin activation program  (thx cmb)
+    - bug fix in config labeling expiration text (the label had partly the same wording as the text
+      so that the regex changed not only the text but the label too)
+
+3.5 Apr 2015
+    - Added CMSIMPLE_URL definition for use with older XH or CMSimple 4.x versions
+    - Code clean up, code put into functions
+    - Special welcome page possible for members with higher level
+    - "Register me" added, sends email to webmaster, collected data will be presented at the bottom 
+      of the members list with import function and send-password-to-user function.
+    - revamped interactive panels: password forgotten, register me, change data, with extensive answers
+    - Autologin button now after login. Clicking autologin will be displayed in the user info and will be
+      still be displayed at the next visit
+    - Scroll position is retained in back end members list view via short lived cookie
+    - Password now hashed also in session var for better security
+    - Hash algrorithm changed from md5 to sha256, which is safer although not as save as
+      the hash function of newer php versions.
+    - Put old functionality for CMSimple scripting memberpage call in an extra file only included if necessary
+    - Added opcache_invalidate
+    - Exclusive file locking added to saving different files
+    - Now memberslist, logfile, register-me and logged-in data all with .htaccess default at 
+      userfiles/plugins/memberpages
+    - Members list is saved in ini format in a protected php file
+    - No more "file"-dialog in memberpages backend, no more direct upload/download of members list 
+      (could be done via ftp though)
+    - Detailed update function with import of old members list and log file, checks if new file are there and
+      writable, checks for save_mode=on, choice to keep old directory or use new default directory
+    - Beefed up log view with size in bytes and entries and button to reduce log to last 500 entries
+    - Length of random password can be set to 4, 5 or 6 characters,
+      if members want to change their passwords, the same minimum number of char is required
+    - New Password are required to have at least an uppercase letter, a lowercase letter and a cipher.
+    - Expires date converts entries like 1.1.15 to 2015-01-01 (suggested by Ludwig)
+      Expire date saved in unix time stamp. Configurable warning (days before membership expires)
+      on log in of members.
+    - Expired memberships will be highlighted in back end members list.
+    - Error message in backend if any member is without password (suggested by Ludwig)
+    - Bugfix (thx to cmb)
+    - many spelling corrections contributed by Michael (mhz)
+    - After passwords are changed by members in the members panel they are shown as dots in the members list
+      and are not editable any more by the webmaster
+    - Pluginactivation now in separate file, together with function to import old members list
+    - Small security improvement in checking the entered email address (contributed by cmb)
+    - memberslogin() and membersnotice() can take the argument 1 for smaller information of logged in members
+
+
+3.4.3 Jan 2015
+    - Bugfix (Bug reported by Wolfgang, permission data was lost when saving emails was unselected)
+
+3.4.2 Oct 2014
+    - Bugfix (in activation form) reported by cmb
+
+3.4.1 April 2014
+    - Fixed bug: Colered "M" in pagetabs didn't work due to renaming of a CMSimple_XH 1.6 variable from
+      CMSimple_XH 1.6 beta to 1.6 final
+
+3.4 (October 2013)
+    - If expiration date or full name is deselected. values will not be lost (saved in hidden fields).
+    - Now log entries start with date
+3.4beta2 (October 2013)
+    - Prevented entering of commas, which would mess up the csv list.
+3.4beta (September 2013)
+    - In admin-mode saving members list will send only changed values to server to prevent data loss
+      when members lists get too large and php variable number limit becomes a problem.
+      Code for saving the members file was rewritten.
+    - Updating now via installing everything on top of an existing installation and starting the
+      "activation" process, which reads existing values and creates a new config file.
+    - Link to members control panel can be switched off
+    - Bugfix upload and download of csv-files
+    - Deleted all mention of $_SESSION('sessionnr'] to make Memberpages compatible with CMSimple_XH 1.6
+    - Added query if cmsimple 4.x or _XH 1.5 to as XH 1.6 uses different IDs in Pagedata tabs
+    - NEW: Expiration dates of membership can be entered in member's list
+
+3.3 (June 2013)
+    - fixed bug (reported by cmb) which prevented changing passwords containing regex-reserved signs
+    - added version.nfo
+
+3.2.2 to prepare for CMSImple_XH 1.6 "define('CMSIMPLE_URL',..." had to check its prior existance first
+3.2.1 (March 2013)
+    - on IIS-Servers the plugin didn't work. cmb came up with a solution involving a new definition
+      "define('CMSIMPLE_URL',..." to be used together with "header('Location: '.CMSIMPLE_URL.'?'..."
+
+3.2 (Feb 2013)
+    - added function to see who is logged in (works with memberlist_XH 1beta2 by cmb)
+    - admin email added for password forgotten when no email is in member's list
+    - new variable "fullname"
+    - members panel reprogrammed, gives now more detailed error messages
+    - help files updated
+
+3.1 (Feb 2012) same as 3.1 rc
+
+3.1 rc (Nov 2012)
+    - changed session_destroys to unset($_SESSION['username'], $_SESSION['sessionnr'],
+      $_SESSION['accesslevel'], $_SESSION['password']) to avoid CSRF-attacks (advice form cmb);
+    - error messages for user control panel improved
+    - several bug fixes
+    - Slovak translation by Tata
+
+3.1 beta (Nov 2012)
+    - Password forgotten can be turned off
+    - log cannot be turned off anymore, gets its own page in backend
+    - Selectable methods of turning pages into a memberpages either via pagedata or via
+      #CMSimple member();# in the text. One, both or no method possible.
+    - pagedata tab shows "M", memberpages get bold colored "M", color configurable
+      accesslevel, if present, will be added to the colored "M" in the pagedata tab
+    - Memberpages can be saved as before as php, php memberfiles gain the same handling
+      advantages as csv files, except for up/downloading/backup
+    - password forgotten improved: now password requests in case of no email are send
+      to the site's contact email, or, if not entered, to the sender's email entered in memberpages
+    - if usage of pagedata tabs is deselected, pagedata.php will be cleaned of pagedata entries
+    - Lots and lots of small improvements
+
+3.0
+    - Prevent entering the same user name twice
+    - Different types of password generation added
+    - changed $_SESSION['Name'] to $_SESSION['username'] to be conform to the register plugin
+
+2012 (June) version 3.0 beta
+    - Changed all php csv-functions as they are problematic with accented letters
+    - Added password forgotten with email sending the password
+    - Comprehensive entries in logfile, log will automatically scroll to the end
+    - Czech translation by oldnema
+    - Added possibility to switch off access modes
+    - Added "bitmask" access modes giving detailed access management with checkboxes
+    - improved security during members login through hint by cmb (CMSimpleforum)
+
+2012 (June) version 3.0 concept 2
+    - User Control Panel added, email and password editable by users
+    - restore csv backup file and adding of php members data to csv members file added
+
+2012 (April) version 3.0 concept. Majority of code new or changed; too many changes to list
+
+
+==============================================
+Series 2 by Gert Ebersbach (www.ge-webdesign.de)
+----------------------------------------------
+
+2010-12-10: Memberpages 2.3 XH
+    - login-, logout- and error-page are working now again
+
+2010-08-16: Memberpages 2.2 XH
+    - All files utf-8 encoded (utf-8 without BOM)
+
+2010-02-27: Memberpages 2.1 XH
+    - code-cleaning of all php-files
+    - New function memberswarning() - warning if a member is logged in (usable in template)
+    - no more special files necessary for logged_out, logged_in, login_error and 
+      Members_not_logged_in, memberpages causes some messages now.
+    - settings for login_page, logout_page and error_page moved to the language files, 
+      for better functionality in multilingual sites
+
+2009: Memberpages 2.0 XH - rewrote code for CMSimple_XH
+    - (X)html valid output
+
+
+==============================================
+History up to 2007
+==============================================
+(Plugin started by Michael Svarrer)
+----------------------------------------------
+
+CMSimple members plugin version 1.7
+    - Fix for URL first level of path missing when using hide_pages=true
+CMSimple members plugin version 1.6
+    - Solving a problem in IIS with the use of header function
+CMSimple members plugin version 1.5
+    - $sn and $su missing in form action in function memberspage() and memberslogin()
+CMSimple members plugin version 1.4
+    - minor bug fix for cache in Mozilla browsers, added hide pages in toc and sitemap
+CMSimple members plugin version 1.3
+    - minor bug fix, csv_seperator made configurable
+CMSimple members plugin version 1.2
+    - minor bug fix, faulty setting of session['page'], causing problems with advanced news script
+CMSimple members plugin version 1.1
+    - minor bug fix, for fixing problem with quot instead of "
+    - some language files added, lv,se,fi thanks to triumaz and martinm
+CMSimple members plugin version 1.0
+    - New feature added : Pages can be hidden from TOC
+    - sv('REQUEST_URI') changed $sn
+CMSimple members plugin version 0.6
+    - New feature added : Remember me function using cookie, and logging function and 
+      loading of members from external csv file
+CMSimple members plugin version 0.5
+    - New feature added : Now it's possible to have multiple accessclasses on a page
+CMSimple members plugin version 0.4
+    - Error message when headers already sent by other PHP file.
+    - sv('REQUEST_URI') changed to support IIS
+CMSimple members plugin version 0.3
+    - Adapted to the plugin loader plugin
+CMSimple members plugin version 0.2
+    - logout bug when using multiple language installation of CMSimple fixed
+CMSimple members plugin version 0.1 beta 3
+    - parameters moved to config.php
+    - access level added
+CMSimple members plugin version 0.1 beta 2
+    - initvar added when running php in safemode
+CMSimple members plugin version 0.1 beta 1
+    - the first draft

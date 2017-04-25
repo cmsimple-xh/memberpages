@@ -1,0 +1,21 @@
+Updating
+=================================
+
+The unzipped memberpages_XH contains a plugins and a userfiles folder.
+Copy these folders into the base of your CMSimple_XH installation.
+
+The existing Memberpages-plugin will be overwritten.
+Go to the Memberpages backend and click "activate plugin".
+
+
+Update-Anweisung
+================
+
+Das entpackte memberpages_XH enthält einen "plugins" und einen "userfiles"
+Ordner. Das Ganze einfach in das Grundverzeichnis von CMSimple_XH schieben.
+
+Das bestehende Memberpages-Plugin wird dadurch überschrieben, aber nicht die
+Konfig-Datei, die Backupdatei der Sprachdatei, die Logdatei und die Mitgliederliste.
+Wenn eine alte Konfig-Datei und eine Backupsprachdatei gefunden werden, liest das
+Plugin deren Werte aus und erzeugt bei der Aktivierung entsprechende neue Dateien.
+

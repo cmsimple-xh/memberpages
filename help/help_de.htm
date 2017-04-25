@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Memberpages_XH</title>
+<style type="text/css">
+body {background: #f6f6f6; font: normal normal 16px/1.5 'trebuchet MS',sans-serif}
+.notice {margin:0 0 0 3em; color:#050; font-size:92%;}
+.new {margin:0 0 2em 30px; color:#400}
+.old {margin:0 0 0 39px;font-size:92%; color:#400}
+code {font-family: consolas, 'courier new', monospace; font-weight:bold; font-size: 90%; color:#084;white-space:nowrap;}
+div {width:100%; max-width: 42em; margin: 0 auto; padding: 0 0 45px;}
+p {margin:1em 0;}
+em {font-weight: bold;}
+h1, h2, h3, h4, h5, h6 {font-family:georgia,serif; color: #43b;margin:2em 0 1em;}
+ul h6 {margin:.5em 0 0 -2.5em;font-size:16px;}
+strong {color:#b00;font-size:110%;}
+b {color:#048;font-size:105%;}
+table th {background:#ddd;}
+td, th {border: 1px solid #888;padding:.5em;}
+table {margin:0 0 1em;width:100%;border-collapse:collapse;}
+</style>
+</head>
+
+<body>
+
+<div>
+<h1>Memberpages_XH 3.6</h1>
+<h3>für CMSimple_XH >= 1.5 und CMSimple 4.x
+<br>PHP >= 5</h3>
+
+<p><strong>Neu bei 3.6</strong> ist die einfachere Nutzung ohne Templateänderung. Jetzt braucht man nur das Einlog-Feld
+im Contentbereich einer Seite aufzurufen, ein Einbau ins Template ist nicht mehr nötig.</p>
+<ul>
+ <li>Nach dem Einloggen können <strong>3 Aktionen</strong> eingestellt werden:
+
+ <ul>
+  <li>Eine Seite kann vor den eingeloggten Mitgliedern versteckt werden, z.B. die Login Seite.</li>
+  <li>Der Besucher kann zu einer anderen Seite weitergeleitet werden, z.B. der ersten Mitgliederseite (diese Funktion gab es bereits).</li>
+  <li>Eine einzeilige Mitglieder-Info kann über dem Contentbereich gezeigt werden, so dass man weiß, dass man  eingeloggt ist. Zum Info-Bereich gehören Zugang zu persönlichen Einstellungen, Autologin, und Anzeige anderer aktiver Mitglieder.</li>
+ </ul></li>
+ <li>Autologin jetzt als Checkbox, nach dem Einloggen ein- und ausschaltbar.
+</li>
+ <li>Einstellungen für Fehler-Seiten entfernt. Fehlerhafte Einlogversuche erzeugen jetzt eine Fehlermeldung direkt oberhalb des Login-Feldes.
+</li>
+</ul>
+<hr>
+
+<h3>Pluginaufrufe</h3>
+<table>
+<tr><th>Code</th><th>nicht eingeloggt</th><th>eingeloggt</th></tr>
+<tr>
+<td><code>{{{memberslogin}}}</code><br><small>oder im Template:</small><br><code>&lt;?php echo memberslogin();?&gt;</code></td>
+<td>Login-Feld wird erzeugt</td>
+<td>Mehrzeiliges Info-Feld mit Logout-Feld</td>
+</tr>
+<tr>
+<td><code>{{{memberslogin 1}}}</code><br><small>oder im Template:</small><br>
+<code>&lt;?php echo memberslogin(1);?&gt;</code></td>
+<td>Login-Feld wird erzeugt</td>
+<td>nur Textausgabe: "Sie sind eingeloggt"</td>
+</tr>
+<tr>
+<td><code>{{{membersnotice}}}</code><br><small>oder im Template:</small><br><code>&lt;?php echo membersnotice();?&gt;</code></td>
+<td>–</td>
+<td>Mehrzeiliges Info-Feld mit Logout-Feld</td>
+</tr>
+<tr>
+<td><code>{{{membersnotice 1}}}</code><br><small>oder im Template:</small><br><code>&lt;?php echo membersnotice(1);?&gt;</code></td>
+<td>–</td>
+<td>Einzeiliges Info-Feld mit Logout-Feld</td>
+</tr>
+</table>
+<p>Ab Memberpages 3.6 wird nur <strong>noch die erste Zeile</strong> obiger Tabelle gebraucht.</p>
+<ul>
+ <li>Entweder man nutzt <code>{{{memberslogin}}}</code> im Contentbereich und lässt das einzeilige Info-Feld (nach dem Einloggen) automatisch am Anfang des Contentbereichs erscheinen<br>
+ (um die Auslogmöglichkeit nicht zu verdoppeln kann man die Loginseite nach dem Login verstecken),  oder</li>
+ <li>man schreibt <code>&lt;?php echo memberslogin();?&gt;</code> ins Template. Dann ist auf jeder Seite eine Einloggmöglichkeit und nach dem Einloggen erscheint an dieser Stelle ein Infobereich mit Ausloggmöglichkeit.</li>
+</ul>
+<hr>
+
+<h3>Update von 3.x</h3>
+<p>Neue Version über alte installieren. Zum Pluginbackend gehen und "Plugin aktivieren" klicken.
+Die neue Version liest die alten Config und Sprachdateien aus und erstellt daraus neue. Mitgliederliste und Logdatei von Versionen unter 3.5 können importiert werden.</p>
+
+<hr>
+
+<h3>Memberpages (Mitgliederseiten) hat zwei Anwendungsbereiche:</h3>
+<ul>
+<li>Das Plugin erzeugt ein Login-Feld, über das man sich mit Benutzernamen und Passwort einloggen kann.
+Das Einloggen kann als Zugang für andere Anwendungen genutzt werden, z.B. Forum_XH.</li>
+<li>Memberpages kann auch Seiten verstecken und diese für eingeloggte Nutzer wieder sichtbar machen. Nutzer können verschieden hohe Berechtigungen vergeben werden und Seiten können verschiedenen Zugangslevel haben</li>
+</ul>
+
+<p>Memberpages führt ein Log über alle Ein- und Auslog-Vorgänge.</p>
+
+<p>Benutzername, Passwort und vollständige Name dürfen äöüß, Sonderzeichen (z.B. Apostroph) und außereuropäische Zeichen enthalten, außer " und \.</p>
+
+<hr>
+
+<h2>Memberpages installieren</h2>
+<p>Zip-Datei entzippen und den Ordner "memberpages" in CMSimples Plugin-Ordner kopieren.
+Dann das Login-Eingabeformular entweder ins Template oder auf eine Seite einfügen.</p>
+
+
+<h3>Seiten nur für Mitglieder sichtbar machen</h3>
+<p>Zwei verschiedene Methoden stehen zur Verfügung. Eine von beiden, beide oder keine kann angekreuzt werden.
+Ist keine Methode angekreuzt, kann Memberpages nur als Einwahlmöglichkeit für andere Plugins dienen.
+Ungenutzte Methoden sollten abgewählt werden um unnötige Berechnungen zu vermeiden.</p>
+<ul>
+<li><h4>Mitgliederseiten über Seitenreiter zuweisen (empfohlen)</h4>
+<p>Einfach über Seitenreiter oberhalb des Editor Menüs Mitgliederseiten einstellen.
+Das Zugangsniveau kann man dort ebenfalls einstellen, solange nicht die
+Option "Mitglieder sehen alle Mitgliedsseiten" eingestellt wurde. Die Einstellungen der Seitenreiter werden in der pagedata.php gespeichert.
+Beim Abwählen der Seitenreitermethode werden die entsprechenden Einträge in der Pagedata.php gelöscht.</p></li>
+<li>
+<h4>Mitgliederseiten durch <code>#CMSimple member();#</code> im Text</h4>
+<p>Diese Methode wird nur noch angeboten, weil sie in früheren Versionen von Memberpages üblich war. In kommenden Versionen wird sie wahrscheinlich eingestellt.<br>
+Auf die Seiten, die Mitgliederseiten werden sollen, den Code <code>#CMSimple member();#</code> einfügen.
+Den Zugangslevel zwischen den Klammern angeben, z.B.
+<code>#CMSimple member(3);#</code> für Level 3.</p>
+</li>
+</ul>
+
+
+<hr>
+
+<h3>Memberpages_XH und Forum_XH</h3>
+<p>Wenn man Memberpages nicht zum Verbergen von Seiten gegenüber Nichtmitgliedern nutzt, sollte man beide im nächsten Absatz erklärte Methoden zum Seitenverbergen ausschalten.
+Wenn Sie Forum_XH 1beta1 nutzen und den vollständigen Namen der Nutzer im Forum anzeigen wollen,
+Zeile 170 in plugins/forum/index.php ändern von:<br>
+<code>return isset($_SESSION['Name']) ? $_SESSION['Name'] : (</code><br>
+zu<br>
+<code>return isset($_SESSION['fullname']) ? $_SESSION['fullname'] : (</code></p>
+
+<hr>
+
+
+
+<h3>Einstellen der Zugangsberechtigungen</h3>
+<p>Mitgliederseiten ohne Zugangslevel (= Zugangslevel 0) können von allen Mitgliedern gesehen werden.
+Für den Zugang zu einer Seite mit Zugangslevel gibt es folgende Einstellungen:</p>
+<ol>
+<li>Wenn man Zugangslevel nicht nutzt, empfiehlt sich die Einstellung <em>"Mitglieder sehen ALLE Mitgliederseiten"</em>.
+Zugangslevel werden dann auch in der Mitgliederliste ausgeblendet.</li>
+<li><em>"Seiten mit GLEICHEM oder NIEDRIGEREM Level"</em> bewirkt, dass Mitglieder mit hoher Zugangsberechtigung
+auch Seiten mit niedrigerem Level sehen, z.B. kann jemand mit Zugangsberechtigung 3  Seiten mit Zugangslevel 1, 2 und 3 sehen.</li>
+<li><em>"Seiten mit GLEICHEM oder ohne Level"</em> bewirkt, dass jemand mit Zugangsberechtigung 3 nur noch Seiten
+mit Level 3 und Seiten ohne Level sehen kann. So kann man verschiedenen Personen exklusiven Zugang zu einzelnen Seiten geben.
+Die Anzahlt möglicher Levels kann man in nächsten Feld eingeben. Selbst 100 Levels sind möglich.</li>
+
+<li><em>"Seiten mit GLEICHEM oder ohne Level, plus VIPs haben auch Zugang zu Seiten mit NIEDRIGEREM Level".</em> Hier haben also normale Mitglieder exklusiven Zugang nur auf das eigenen Level, währen VIPs deutlich mehr Zugang haben. Könnte man in einer Unterrichtssituation nutzen, wo jedem Schüler eine exklusive Seite bereitgestellt wird, die von anderen Schülern nicht erreichbar ist, während die Lehrer (=VIPs) alle Schülerseiten ansehen können.</li>
+
+<li><em>"Pro Mitglied im Einzelnen für 3, 4 oder 5 Seitenlevel"</em> erlaubt eine detaillierte Zugangsverwaltung.
+ Pro Mitglied kann man festlegen, zu welchen  Seitenzugangsleveln das Mitglied eine Zugangsberechtigung hat oder nicht.
+ So könnte jemand Zugang zu Seiten mit Leveln 1, 4 und 5 haben, aber nicht zu 2 und 3.</li>
+</ol>
+<p>Die Wirkung der Zugangsmodi kann man schön sehen, wenn man einem fiktiven Mitglied die Zugangberechtigung 3 gibt,
+Seiten mit Zugangsleveln 0, 1, 2, 3, 4 anlegt und sich als dieses Mitglied anmeldet. Bei Einstellung <em>ALLE Mitgliederseiten</em>
+sieht man dann im CMSimples Seitenmenü alle Mitgliederseiten 0, 1, 2, 3, 4; bei <em>GLEICHEM oder NIEDRIGEREM Level</em>
+nur noch Seiten 0, 1, 2, 3; bei mit <em>GLEICHEM oder ohne Level</em> 0, 3; und bei
+<em>Pro Mitglied im Einzelnen</em> 0, 1, 2 <small>(hier wird die Zahl 3 in die Dualzahl 00011 umgewandelt,
+woraus dann die Zugangsberechtigungen abgeleitet werden)</small>.</p>
+<hr>
+
+<h3>Passwort vergessen?</h3>
+<p>Wenn das aktiviert ist, wird ein entsprechender kleiner Link unter dem Einlogknopf gezeigt.
+Durch Klick darauf gelangt der Besucher zu einem Menü in dem er sein Passwort durch Angabe seines Benutzernamens anfordern kann.
+Liegt für diesen Namen eine E-Mail-Adresse vor, wird das Passwort verschickt.</p>
+<p>
+Für diese E-Mail muss eine Site-E-Mailadresse unter <code>E-Mail der Site</code> eingetragen sein.
+
+Eine <code>Admin-E-Mail-Adresse</code> wird auch benötigt:
+Steht der angegebene Benutzernamen nicht in der Mitgliederliste oder liegt keine E-Mail-Adresse zu dem Benutzernamen vor,
+wird eine Nachricht an die Admin-E-Mail-Adresse geschickt. Site- und Admin-E-Mail-Adressen können identisch sein.</p>
+
+
+<hr>
+
+<h3>Speicherort der Mitglieder-Datei</h3>
+
+<p>Die Mitgliederdatei wird ab Version 3.5 standardmäßig unter userfiles/plugins/memberpages/ gespeichert, sie
+kann aber auch an anderer Stelle gespeichert werden. Dazu einfach den gewünschten Speicherort in den Einstellungen angeben.
+Bei der Angabe wird vom der Basisebene des installierten CMSimple_XH-Systems ausgegangen.</p>
+</p>Normalerweise ist CMSimple_XH nicht auf dem niedrigsten zugänglichen Verzeichnis auf dem Server installiert.
+Man kann jetzt sogar die Mitglieder-Datei auf einem niedrigeren Verzeichnis als CMSImple_XH installieren durch eine
+Angabe wie <code>../mein_Verzeichnis</code>.</p>
+<p>Bei Änderung des Verzeichnispfades wird eine neue Mitgliederliste erzeugt.
+Will man die alte und auch die alte Logdatei weiter nutzen, diese aus dem alten Verzeichnis mittels ftp ins neue Verzeichnis kopieren.</p>
+
+
+<hr>
+
+<h2>History</h2>
+<p>Ursprünglich von <a href="http://svarrer.dk">svarrer.dk</a> (v. 0.1-1.7),
+weitergeführt von <a href="http://www.ge-webdesign.de">ge-webdesign.de</a> (v. 2.0-2.3),
+und ab Version 3 stark verändert und weiter entwickelt von <a href="http://frankziesing.de/cmsimple/" target="_blank">Svasti</a>
+(3.1 mit Hinweisen von <a href="http://3.-magi.net" target="_blank">cmb</a> zur Verbesserung der Sicherheit,
+und 3.2 mit Code von cmb zur Anzeige gegenwärtig aktiver Nutzer).</p>
+
+<ul class='new'>
+<h6>3.5.2</h6>
+<li>Weitere Zugangsmöglichkeit: Mitglieder können nur Seiten mit GlEICHEM oder keinem Level sehen, während VIPs auch Seiten mit
+NIEDRIGEREM Level sehen können.</li>
+<h6>3.5</h6>
+<li><b>Registriermöglichkeit:</b> Besucher können Mitgliedschaft online beantragen, doppelte Benutzernamen und doppelte vollständige Namen werden verhindert.</li>
+<li><b>VIP-Login:</b> Mitglieder mit höherer Zugangsberechtigung können nach Login auf eine spezielle Empfangsseite geleitet werden.</li>
+<li><b>Passwörter:</b> Länge des automatisch generierten Passworts einstellbar.
+Wenn Mitglieder ihr Passwort ändern, wird mindestens die gleiche Länge verlangt. Außerdem muss das neue Passwort mindestens einen Großbuchstaben, einen Kleinbuchstaben und eine Zahl enthalten. Nach Passwortänderung durch das Mitglied wird das Passwort im Backend nur noch als nicht editierbare Punktreihe gezeigt. Verbesserte Sicherheit durch stärkere Verschleierung (hash) des Passworts, jetzt auch bei
+Speicherung des Passworts als Session-Variable.</li>
+<li><b>Autologin:</b> Jetzt <strong>nach</strong> dem Einloggen aktivierbar. Ist Autologin eingeschaltet, wird es auch bei den späteren
+Seitenbesuchen angezeigt. Funktioniert wie bisher über Cookies auf dem Rechner des Besuchers.</li>
+<li><b>Zeitlich begrenzte Mitgliedschaft:</b> Das Datumsfeld für das Ende der Mitgliedschaft wandelt Eingaben wie <strong>1.1.15</strong> automatisch in <strong>2015-01-01</strong> um.
+Abgelaufenes Datum wird wird im Backend hervorgehoben. Mitglieder werden nach Einloggen vor Ablauf einer einstellbaren Anzahl Tagen gewarnt, dass die Mitgliedschaft bald endet.</li>
+<li><b>Einlogg-Info:</b> <code>&lt;?php echo membersnotice(1);?&gt;</code> erzeugt eine kurze einzeilige Darstellung aller Informationen und Schaltflächen, wenn Mitglieder eingeloggt sind. ("1" für "1-zeilig", ohne die 1 ist die Darstellung mehrzeilig wie bisher.)</li>
+<li><b>Speicherort:</b> Mitgliederliste, Neuanmeldungen, Logdatei, Liste der gerade eingeloggten Mitglieder
+werden zusammen mit einer schützenden .htaccess Datei jetzt standardmäßig unter userfiles/plugins/memberpages gespeichert
+und nicht mehr im Plugin-Verzeichnis. Die alte Liste und Logdatei können bei der
+Pluginaktiviering importiert werden.</li>
+</ul>
+<ul class="old">
+<h6>3.4</h6>
+<li>Mitgliedschaft kann ablaufen, Ablaufdatum kann in Mitgliederliste eingegeben werden</li>
+<li>Verbesserte Abspeicher-Methode um Datenverlust bei großen Mitgliederlisten während des Speichern zu verhindern.</li>
+<li>Einfache Update-Methode.</li>
+<h6>3.2</h6>
+<li>Nach dem Einloggen werden die Namen der anderen eingeloggten Mitglieder angezeigt, entweder als vollständiger Name oder als Benutzername.</li>
+<li>Admin-Adresse für Benachrichtigung bei Passwortanfrage ohne E-Mail in der Mitgliederliste.</li>
+<h6>3.1</h6>
+<li>Mitgliederseiten über Seitenreiter erzeugbar</li>
+<li>Mitgliederseiten haben einen farbigen Seitenreiter, andere Seiten ein normales "M" als Seitenreiter</li>
+<li>Höheres Zugangsniveau wird hinter dem Seitenreiter M angezeigt</li>
+<li>Zahllose kleine Verbesserungen</li>
+<li>Slovakische Übersetzung von Tata.</li>
+<h6>3.0</h6>
+<li>vereinfachte Konfiguration</li>
+<li>editierbare, praktische Logdatei</li>
+<li>Benutzer können Passwort und E-Mail-Adresse ändern</li>
+<li>Benutzer können sich vergessenes Passwort per E-Mail zusenden lassen</li>
+<li>Benutzerliste kann zur externen Bearbeitung leicht rauf- und runtergeladen werden</li>
+<li>verschiedene Möglichkeiten der Zugangsberechtigungs-Verwaltung</li>
+<li>Tschechische Übersetzung von oldnema</li>
+</ul><br>
+<p class='notice'>Wichtigste Änderungen gegenüber Version 2.3 :</p>
+<ul class='notice'><li>Neu: <em>membersnotice(), member()</em></li>
+<li>Gelöscht: <em>memberswarning(), memberpages()</em></li>
+<li>Geändert: das <em>Zugangsniveau (accesslevel)</em> kann nur einen Wert haben,
+nur eine <em>Mitgliederliste</em> wird genutzt.</li>
+</ul>
+</div>
+</body>
+</html>

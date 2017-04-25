@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Memberpages_XH</title>
+<style type="text/css">
+body {background: #f6f6f6; font: normal normal 16px/1.5 'trebuchet MS',sans-serif}
+.notice {margin:0 0 0 3em; color:#050; font-size:92%;}
+.new {margin:0 0 2em 30px; color:#400}
+.old {margin:0 0 0 39px;font-size:92%; color:#400}
+code {font-family: consolas, 'courier new', monospace; font-weight:bold; font-size: 90%; color:#084;white-space:nowrap;}
+div {width:100%; max-width: 42em; margin: 0 auto; padding: 0 0 45px;}
+p {margin:1em 0;}
+em {font-weight: bold;}
+h1, h2, h3, h4, h5, h6 {font-family:georgia,serif; color: #43b;margin:2em 0 1em;}
+ul h6 {margin:.5em 0 0 -2.5em;font-size:16px;}
+strong {color:#b00;font-size:110%;}
+b {color:#048;font-size:105%;}
+table th {background:#ddd;}
+td, th {border: 1px solid #888;padding:.5em;}
+table {margin:0 0 1em;width:100%;border-collapse:collapse;}
+</style>
+</head>
+
+<body>
+
+<div>
+<h1>Memberpages_XH 3.6</h1>
+<h3>for CMSimple_XH >= 1.5 and CMSimple 4.x
+<br>PHP >= 5</h3>
+
+<p><strong>New in 3.6</strong>
+is a simpler usage without changing the template, i.e. just put the log-in form <code>{{{memberslogin}}}</code> on a page.</p>
+<ul>
+ <li>On login, <strong>3 actions can be set:</strong>
+
+ <ul>
+  <li>A page can be hidden, usually this will be the login page.</li>
+  <li>The visitor can be shown another page, i.e. the first of the member pages.</li>
+  <li>A one line notice (member's notice) will be generated automatically on top of the content telling the visitor that he is logged in. It can include a link to the member's panel, option for autologin and the names of other active members.</li>
+ </ul></li>
+ <li>Autologin now as checkbox, which can be set and unset while logged in.
+</li>
+ <li>Settings for error pages removed. Log-in errors will get an error notice directly on top of the log-in form.
+</li>
+</ul>
+
+<hr>
+
+<h3>Plugincalls</h3>
+<table>
+<tr><th>Code</th><th>not logged in</th><th>logged in</th></tr>
+<tr>
+<td><code>{{{memberslogin}}}</code><br><small>or in template:</small><br><code>&lt;?php echo memberslogin();?&gt;</code></td>
+<td>Login field</td>
+<td>Multi line info with log out field</td>
+</tr>
+<tr>
+<td><code>{{{memberslogin 1}}}</code><br><small>or in template:</small><br>
+<code>&lt;?php echo memberslogin(1);?&gt;</code></td>
+<td>Login field</td>
+<td>Simple text: "You are logged in"</td>
+</tr>
+<tr>
+<td><code>{{{membersnotice}}}</code><br><small>or in template:</small><br><code>&lt;?php echo membersnotice();?&gt;</code></td>
+<td>–</td>
+<td>Multi line info with log out field</td>
+</tr>
+<tr>
+<td><code>{{{membersnotice 1}}}</code><br><small>or in template:</small><br><code>&lt;?php echo membersnotice(1);?&gt;</code></td>
+<td>–</td>
+<td>Single line info with log out field</td>
+</tr>
+</table>
+<p>Since Memberpages 3.6 the <strong>first of the above table rows</strong> is sufficient.</p>
+<ul>
+ <li>Either you use <code>{{{memberslogin}}}</code> in the content and let the plugin generate the single line info field (after login) automatically above the content<br>
+ (to prevent double logout fields hide the log in page after login),  or</li>
+ <li>you put <code>&lt;?php echo memberslogin();?&gt;</code> into the template. In that case the login field appears on every page and after login the info field with logout will be generated in its place.</li>
+</ul>
+<hr>
+
+<h3>Updating from 3.x</h3>
+<p>Install new version on top of old version.
+Go the plugin backend and click "activate plugin".
+The new version will read your old language and config files and use their settings to generate new such files.
+Members' list and log file from versions below 3.5 can be imported.</p><br>
+<hr>
+
+
+<h3>Memberpages_XH has two uses:</h3>
+<ul>
+<li>Via Memberpages login access to other plugins like Forum_XH can be regulated.
+If you don't use Memberpages to hide pages, uncheck all methods to hide pages.</li>
+<li>Memberpages can hide pages and make them visible to visitors logged in as members.</li>
+</ul> 
+<p>Memberpages can store user name, password, access level, email address, full name and membership expiration date.
+In the member's panel members can change password, email address and full name.</p>
+<p>A log of login actions is kept.</p>
+<p>Usernames, passwords and full name accept accented letters and special signs except " and \.</p>
+<hr>
+
+
+
+<h2>Setting up Memberpages</h2>
+<p>Unzip the zip file and upload the folder "memberpages" into the plugin folder.<br>
+Create the login form either in the <em>template</em> or in the <em>content of a page</em>.</p>
+<h3>Hiding pages from public and making them visible for members</h3>
+<p>Set method in config. Uncheck unused method for better speed of your site.</p>
+<ul><li><em>Via pagedata tabs:</em> Set pages as memberpages via the pagedata tab "M" above the editor menu.
+You can also set access level, except when access mode is "members see all memberpages".
+Unchecking the pagedata tab method in plugin config will clean the pagadata.php of all memberpage entries.
+</li>
+<li><em>Via inserting <code>#CMSimple member();#</code> in the text</em> This method is only included for old installations and may not be supported in future versions!</li>
+</ul>
+
+<h2>Login</h2>
+<h3>Login form in the template:</h3>
+<p><img src="loginform.png" alt="loginform.png, 2,0kB" title="Loginform" style="float:left;" height="162" width="177"><img src="loggedinform.png" alt="loggedinform.png, 2,3kB" title="Loggedinform" style="float:right;"  height="180" width="170">Open the template file and put this php code where the login form should be located:
+<code>&lt;?php echo memberslogin();?&gt;</code>
+</p>
+<p>On the left you see the login form, on the right the change to the log-out form after login.
+The look depends on the template.</p>
+
+
+<h3>Login form on a page:</h3>
+<p>If you enter on a page <code>{{{memberslogin}}}</code> you get the same as in the login form in the template,
+with the  change from login form to log-out form.</p>
+<p>With <code>{{{memberslogin 1}}}</code> there will be not log-out form, instead the text "you are logged in" appears.</p>
+<h3>Member's notice</h3>
+<p>When a member goes to another page, you may want to inform him that he is still logged in.
+In the <em>config you can set automatic</em> one line notice on top of every memberpage or every page.
+This notice can also be put into the template via
+<code>&lt;?php echo membersnotice(1);?&gt;</code> which gives something like: <br>
+<img src="membersnotice.png" alt="membersnotice.png, 1,5kB" title="Membersnotice" border="0" height="32" width="417"><br>
+This line is embedded in the div class="membp_oneline" and can be styled via css.
+</p>
+
+<p><code>&lt;?php echo membersnotice();?&gt;</code> (without the 1) gives the same information,
+however not in 1 line but in several lines,
+and serves as a log_out form.
+To avoid a duplication of log-out forms on the login page, you can either hide the login page on login or
+use <code>{{{memberslogin 1}}}</code>.</p>
+
+
+<hr>
+
+<h3>Memberpages_XH and Forum_XH</h3>
+<p>If you use Forum_XH 1beta1 and want to display the full name of users,
+change line 170 in plugins/forum/index.php from
+<code>return isset($_SESSION['Name']) ? $_SESSION['Name'] : (</code><br>
+to<br>
+<code>return isset($_SESSION['fullname']) ? $_SESSION['fullname'] : (</code></p>
+
+<hr>
+
+
+<h3>Choosing the access mode</h3>
+<p>Memberpages without access-level (= level 0) are visible to all members. Concerning pages with access level you can choose between the following modes:</p>
+<ol>
+<li>If you don't use access level, choose <em>"members see all memberpages"</em>. The access level will not be shown in the member's list.</li>
+<li><em>"access to pages with SAME OR LOWER access value"</em> gives e.g. a member with access level 3 access to pages with access level 0, 1, 2, and 3</li>
+<li><em>"access to pages with SAME or no access value"</em> gives e.g. a member with access level 3 access to pages with access level 0 and 3.
+<br>This mode is useful when you have to give different persons exclusive access to different pages.
+Set the number of selectable access levels in the next field. You can even have 100 access levels for 100 exclusive pages. </li>
+<li><em>"access to pages with SAME or no access value, plus VIPs can access pages with LOWER level"</em> This is a combination of the above cases, e.g. a members with access level 50 can access only pages with level 0 and 50, but VIPs with level 60 can see all pages from level 0 to 60.
+<br>Useful for e.g. a school, where every pupil gets a personal page accessable only by himself, while the teachers (=VIPs) can access the pages of all pupils.</li>
+<li><em>"access set per member in DETAIL for 3, 4 or 5 page levels"</em> offers detailed access management.
+You can set the access allowance per member individually to single or multiple page access levels.
+<small>(Internally the same access number is used as in the other options, only now its binary value
+is used and every bit allows access to a higher page access level.
+E.g. a member, who had formerly access level 3 will have his number translated into 00011.
+The binary number determines access to page levels 5,4,3,2,1, i.e. he will have access to pages with access level 1 and 2, and of course to 0.)</small></li>
+</ol>
+<hr>
+
+
+<h3>Password forgotten?</h3>
+<p>The line "Password forgotten" can be displayed under the Login button. A click will ask for the members user name.
+IF the user name and an email address is found in the members list, the forgotten password will be send to that email address.</p>
+<p>
+For sending an email the plugin needs a sender's address, which
+has to be entered in plugin config under <code>Site e-mail address</code>. Without sender's address
+"Password forgotten?" will not be displayed.</p>
+<p>
+An admin email address must also be entered in plugin config to inform the admin of password requests,
+where no email address or username is found in the members' list.</p>
+
+<hr>
+<h3>Folder for saving the members' list</h3>
+<p>From Version 3.5 on the members' list is saved by default in  userfiles/plugins/memberpages/, however
+a different folder can be chosen in plugin config. The entry in the config starts from the CMSimple_XH base.
+You can even, for high protection, choose a folder which is below the CMSimple_XH base,
+e.g. <code>../my_folder</code>.</p>
+<p>
+When you change the folder of the members' list, a new members' list and new log file will be generated.
+If you have done this after already having created a new list, copy the new list via ftp to the new location.</p>
+<hr>
+
+<h2>History</h2>
+<p>The plugin was started by <a href="http://svarrer.dk">svarrer.dk</a> (v. 0.1-1.7),
+maintained by <a href="http://www.ge-webdesign.de">ge-webdesign.de</a> (v. 2.0-2.3),
+and starting with version 3 widely changed and further developed by <a href="http://frankziesing.de/cmsimple/" target="_blank">Svasti</a>
+(3.1 with some hints from <a href="http://3.-magi.net" target="_blank">cmb</a> to improve security, and 3.2 with code from cmb to show who is logged in.).</p>
+
+<ul class='new'>
+<h6>3.5.2</h6>
+<li>Additional access mode: members can see only SAME level pages but VIPs have access also to lower level pages.</li>
+<h6>3.5</h6>
+<li><b>Registration:</b> Visitors can apply for membership, double user names and double full names are prevented.</li>
+<li><b>VIP-Login:</b> Members with higher access level can be led to a specified page after login.</li>
+<li><b>Password:</b> Length of automatically generated password configurable. When members change their passwords,
+this length will be the minimum requirement. Moreover user entered passwords need to have at least 1 Uppercase, 1 lowercase letter and 1 cipher. After a password has been changed by the member, it will be displayed as dots in the backend and is not editable any more. Improved security through better hash algorithms, now the password is also hashed in the session variable.</li>
+<li><b>Autologin:</b> Now available <strong>after</strong> login. If set, it will be shown in the login field, even in the next visit. Works as before via cookies.</li>
+<li><b>Temporary membership:</b> Date field for expiration reformats entries like <strong>1.1.15</strong> automatically to <strong>2015-01-01</strong>. Expired membership dates are highlighted in backend. Members are warned (after login) a configurable number of days before, if their membership is going to end.</li>
+<li><b>Logged in indication:</b> <code>&lt;?php echo membersnotice(1);?&gt;</code> gives all available information and buttons in a single text line. ("1" stands for "1 line", without the "1" the old multiline display is used.)</li>
+<li><b>Storing location:</b> Members' list, membership inquiries, log and list of logged in members are kept by default in
+.htaccess protected folder  userfiles/plugins/memberpages (can be changed). Old list and log can be imported via the plugin activation dialog.</li>
+</ul>
+<ul class='old'>
+<h6>3.4</h6>
+<li>Expiration date of membership can be entered in members list</li>
+<li>New way to save members list will prevent data loss in large members lists.</li>
+<li>Simple updating.</li>
+<h6>3.3</h6>
+<li>Bugfix and version information</li>
+<h6>3.2</h6>
+<li>On login the names of other logged in members can be shown, either as full names or as usernames.</li>
+<li>Admin email address in plugin config for password requests when no member's email is available.</li>
+<h6>3.1</h6>
+<li>Converting pages into memberpages now via pagedata tabs</li>
+<li>Old method also possible. Method can be selected.</li>
+<li>Memberpages have a colored "M" as pagedata tab, other pages have an normal "M"</li>
+<li>If access level has been set, the level number will be added to the colored "M"-tab</li>
+<li>Lots a small improvements</li>
+<li>Slovak translation by Tata.</li>
+<h6>3.0</h6>
+<li>simplified plugin configuration</li>
+<li>comprehensive editable logfile</li>
+<li>members can change password and email address</li>
+<li>members can have forgotten password sent by email</li>
+<li>easy uploading and downloading of members list</li>
+<li>different choices of access management</li>
+<li>Czech translation by oldnema.</li>
+</ul><br>
+<p class='notice'>Main changes compared to version 2.3:</p>
+<ul class='notice'>
+<li>New: <em>membersnotice(), member()</em></li>
+<li>Gone: <em>memberswarning(), memberpages()</em></li>
+<li>Changed: <em>accesslevels</em> can have only one value,
+members list can only have one source.</li>
+</ul>
+
+</div>
+</body>
+</html>
