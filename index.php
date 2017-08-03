@@ -31,7 +31,11 @@ if ($mbp_activated) include_once 'memberlist.php';
 if (preg_match("!Googlebot!i",$_SERVER['HTTP_USER_AGENT']));
 else if (preg_match("!MSNbot!i",$_SERVER['HTTP_USER_AGENT']));
 else if (preg_match("!slurp!i",$_SERVER['HTTP_USER_AGENT']));
-else if (!isset($_SESSION)) {session_start();}
+elseif (function_exists('XH_startSession')) {
+    XH_startSession();
+} elseif (!session_id()) {
+    session_start();
+}
 @header("Cache-Control: no-cache, must-revalidate");
 $plugin = basename(dirname(__FILE__),"/");
 

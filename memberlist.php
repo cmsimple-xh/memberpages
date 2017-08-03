@@ -288,7 +288,9 @@ EOS;
 /*
  * Start the session.
  */
-if (session_id() == '') {
+if (function_exists('XH_startSession')) {
+    XH_startSession();
+} elseif (session_id() == '') {
     session_start();
 }
 
