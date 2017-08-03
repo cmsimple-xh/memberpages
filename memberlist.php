@@ -307,7 +307,7 @@ if (isset($_SESSION[MEMBERLIST_VAR])) {
 /*
  * Handle Ajax request.
  */
-if (isset($memberlist_ajax)) {
+if (isset($_GET['memberlist_ajax'])) {
     echo Memberlist_list();
     exit;
 }
