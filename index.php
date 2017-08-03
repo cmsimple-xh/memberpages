@@ -460,7 +460,7 @@ function loggedinform ($oneline=false)
             . ' '
             . $actives
             . '</div>'
-        : $loggedinnotice
+        : $loggedinnotice . ' '
             . $autologin
             . $warning
             . $actives
