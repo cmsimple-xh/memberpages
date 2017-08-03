@@ -36,7 +36,6 @@ elseif (function_exists('XH_startSession')) {
 } elseif (!session_id()) {
     session_start();
 }
-@header("Cache-Control: no-cache, must-revalidate");
 $plugin = basename(dirname(__FILE__),"/");
 
 //if php 4 is used, this function has to be supplied (by cmb)
