@@ -131,14 +131,14 @@ if ($mbp_activated) {
     }
 }
 // PASSWORD FORGOTTEN
-initvar('password_forgotten');
-if (isset($_POST['stoppwforgotten'])) $password_forgotten = $function = '';
-if ($password_forgotten) $o .= memberpages_PwForgotten();
+$temp = isset($_POST['password_forgotten']) ? $_POST['password_forgotten'] : '';
+if (isset($_POST['stoppwforgotten'])) $temp = $function = '';
+if ($temp) $o .= memberpages_PwForgotten();
 
 // Register Me
-initvar('register_me');
-if (isset($_POST['stopregister_me'])) $register_me = $function = '';
-if ($register_me) $o .= memberpages_RegisterMe();
+$temp = isset($_POST['register_me']) ? $_POST['register_me'] : '';
+if (isset($_POST['stopregister_me'])) $temp = $function = '';
+if ($temp) $o .= memberpages_RegisterMe();
 
 ###################################################################################################
 
