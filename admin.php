@@ -118,22 +118,9 @@ if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrat
 
         if(isset($_POST['save_memberpagesconfig'])) {
             $t = memberpages_SaveConfig();
-            include $pth['folder']['plugins'].$plugin.'/config/config.php';
-            include ($pth['folder']['plugins'] . "memberpages/languages/$sl.php");
-            if($t['error']) {
-                $o .= '<p class="cmsimplecore_warning">'.$plugin_tx['memberpages']['error_texttrigger'].'</p>';
-            }
-            if($t['success']) {
-                $bjs .= '<script type="text/javascript">'."\n"
-              . 'document.getElementById(\'membp_saved\').style.visibility = \'visible\';'
-              . 'document.getElementById(\'membp_saved2\').style.visibility = \'visible\';'
-              . 'setTimeout(function(){document.getElementById(\'membp_saved\').style.visibility = \'hidden\'},2500);'
-              . 'setTimeout(function(){document.getElementById(\'membp_saved2\').style.visibility = \'hidden\'},2500);'
-              . '</script>'."\n";
-            }
-            if($t['cntsave']) {
-                $o .= XH_message('fail',$tx['error']['cntsave'] . ' ' . $t['cntsave']);
-            }
+			$url = CMSIMPLE_URL . '?&memberpages&admin=plugin_config&action=plugin_edit';
+			header("Location: $url", true, 303);
+			exit;
         }
         $o .= memberpages_Config();
     }  
