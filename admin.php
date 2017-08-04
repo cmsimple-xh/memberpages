@@ -8,7 +8,7 @@
 
 if ((!function_exists('sv')) || preg_match('!admin.php!i', sv('PHP_SELF'))) die('Access denied');
 
-define('MEMBERPAGES_VERSION', '3.6.3');
+define('MEMBERPAGES_VERSION', '3.6.4');
 
 include 'funcs.php';
 
