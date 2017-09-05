@@ -74,10 +74,7 @@ if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrat
 	       . 'it under the terms of the GNU General Public License as published by '
 	       . 'the Free Software Foundation, either version 3 of the License, or '
 	       . '(at your option) any later version.</p>'
-           . '<p>For a copy of the GNU General Public License see '
-           . '<a href="' . $sn . '?' . uenc($cf['menu']['legal']) . '">'
-           . $cf['menu']['legal']
-           . '</a></p>' ."\n"
+           . '<p>For a copy of the GNU General Public License see https://www.gnu.org/licenses/gpl.html</p>' ."\n"
            . '<p><small><b>Acknowledgement:</b></small><br />'
            . 'Memberpages_XH uses Memberlist_XH by <a href="http://3-magi.net">cmb</a> to show which members are logged in.<p>'
            . "\n";
