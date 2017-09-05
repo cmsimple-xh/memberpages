@@ -150,6 +150,9 @@ if ($function == 'memberslogin')
     initvar('username');
     initvar('password');
     if ($plugin_cf['memberpages']['show_fullname']) initvar('fullname');
+    if (!function_exists('password_hash')) {
+        include_once "{$pth['folder']['plugins']}memberpages/password.php";
+    }
     if (isset($_COOKIE['cookname']) && isset($_COOKIE['cookpass']))
     {
         $username = $_COOKIE['cookname'];
@@ -158,13 +161,13 @@ if ($function == 'memberslogin')
     }
     else
     {
-        $password_hash = memberpages_Hash($password);
+        $password_hash = password_hash($password, PASSWORD_BCRYPT);
         $autologin = false;
     }
 
     foreach ($member as $i=>$value) {
 
-        if ($username == $member[$i]['user'] && $password_hash == memberpages_Hash($member[$i]['pass'])) {
+        if ($username == $member[$i]['user'] && password_verify($member[$i]['pass'], $password_hash)) {
 
             if ($plugin_cf['memberpages']['show_expires']
                 && $member[$i]['expires']
@@ -288,15 +291,6 @@ function memberpages_Mail($to, $subject, $message)
     $header = "MIME-Version: 1.0\r\nContent-type: text/plain; charset=UTF-8\r\nFrom: "
             . $plugin_cf['memberpages']['site_email'];
     return mail($to, $subject, $message, $header);
-}
-
-
-
-function memberpages_Hash($item)
-{
-    global $cf;
-    if (function_exists('hash')) return hash('sha256',$cf['security']['password'].$item,true);
-    else return sha1($cf['security']['password'].$item,true);
 }
 
 
