@@ -40,19 +40,19 @@ if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministrat
     $log_on           = $action=='log'?                              ' class="membp_selected"':'';
 
     $o .= '<p class="membp_admin_menu">' . "\n"
-       .  '<a'.$plugin_main_on  .' href="?&amp;' . $plugin . '&amp;admin=plugin_main&action=plugin_text">'
+       .  '<a'.$plugin_main_on  .' href="?&amp;' . $plugin . '&amp;admin=plugin_main&amp;action=plugin_text">'
        .  $plugin_tx[$plugin]['menu_main'].'</a>&nbsp; ' . "\n"
-       .  '<a'.$log_on          .' href="?&amp;' . $plugin . '&amp;admin=plugin_config&action=log">'
+       .  '<a'.$log_on          .' href="?&amp;' . $plugin . '&amp;admin=plugin_config&amp;action=log">'
        .  $plugin_tx[$plugin]['menu_log'].'</a>&nbsp; ' . "\n"
-       .  '<a'.$config_on       .' href="?&amp;' . $plugin . '&amp;admin=plugin_config&action=plugin_edit">'
+       .  '<a'.$config_on       .' href="?&amp;' . $plugin . '&amp;admin=plugin_config&amp;action=plugin_edit">'
        .  $plugin_tx[$plugin]['menu_config'].'</a>&nbsp; ' . "\n"
-       .  '<a'.$stylesheet_on   .' href="?&amp;' . $plugin . '&amp;admin=plugin_stylesheet&action=plugin_text">'
+       .  '<a'.$stylesheet_on   .' href="?&amp;' . $plugin . '&amp;admin=plugin_stylesheet&amp;action=plugin_text">'
        .  $plugin_tx[$plugin]['menu_css'].'</a>&nbsp; ' . "\n"
-       .  '<a'.$language_on     .' href="?&amp;' . $plugin . '&amp;admin=plugin_language&action=plugin_edit">'
+       .  '<a'.$language_on     .' href="?&amp;' . $plugin . '&amp;admin=plugin_language&amp;action=plugin_edit">'
        .  $plugin_tx[$plugin]['menu_language'].'</a>&nbsp; ' . "\n"
        .  '<a                      href="'.        $pth['file']['plugin_help'] . '" target="_blank">'
        .  $plugin_tx[$plugin]['menu_help'].'</a>&nbsp; ' . "\n"
-       .  '<a'.$credits_on      .' href="?&amp;' . $plugin . '&amp;admin=plugin_config&action=credits">'
+       .  '<a'.$credits_on      .' href="?&amp;' . $plugin . '&amp;admin=plugin_config&amp;action=credits">'
        .  $plugin_tx[$plugin]['menu_credits'].'</a></p>' . "\n";
 
     if($admin == '' && $action != 'credits') $admin = 'plugin_main';
