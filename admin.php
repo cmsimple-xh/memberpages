@@ -17,10 +17,9 @@ if (function_exists('XH_registerPluginMenuItem')) {
         '?&memberpages&admin=plugin_main&action=plugin_text');
     XH_registerPluginMenuItem('memberpages',$plugin_tx['memberpages']['menu_log'],
         '?&memberpages&admin=plugin_config&action=log');
-    XH_registerPluginMenuItem('memberpages',$plugin_tx['memberpages']['menu_config_headline'],
-        '?&memberpages&admin=plugin_config&action=plugin_edit');
-    XH_registerPluginMenuItem('memberpages',$plugin_tx['memberpages']['menu_help'],
-        $pth['file']['plugin_help'],'_blank');
+    XH_registerStandardPluginMenuItems(false);
+    XH_registerPluginMenuItem('memberpages',$plugin_tx['memberpages']['menu_credits'],
+        '?&memberpages&admin=plugin_config&action=credits');
 }
 
 if (function_exists('XH_wantsPluginAdministration') && XH_wantsPluginAdministration('memberpages')
