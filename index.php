@@ -520,7 +520,7 @@ function memberpages_HidePages()
                         if (!isset($_SESSION['accesslevel'])
                              || ($_SESSION['accesslevel'] < $plugin_cf['memberpages']['VIP_level']
                                  && $_SESSION['accesslevel'] != $access_level)
-                             || ($_SESSION['accesslevel'] > $plugin_cf['memberpages']['VIP_level']
+                             || ($_SESSION['accesslevel'] >= $plugin_cf['memberpages']['VIP_level']
                                  && $_SESSION['accesslevel'] < $access_level))
                         {
                             $c[$i] = '#CMSimple hide#';
