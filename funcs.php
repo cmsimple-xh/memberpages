@@ -1008,7 +1008,7 @@ function memberpages_Config()
     $o .= '>'.$plugin_tx['memberpages']['access_must_match_pageaccess']."</option>\n"
 
     // access to equal + VIP access to lower
-       .  '<option value="2"';
+       .  '<option value="1.5"';
     if($plugin_cf['memberpages']['accessmode']=="1.5") $o .=' selected';
     $o .= '>'.$plugin_tx['memberpages']['access_must_match_VIP_see_lower']."</option>\n"
 
