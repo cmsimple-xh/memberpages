@@ -886,13 +886,8 @@ function memberpages_MembersPanel()
         $newpw_notmatching = $newpassword && $newpassword != $newpassword2 ? true : false;
         $newpw_too_short   = $newpassword && mb_strlen($newpassword,'UTF-8') < $pwlength? true : false;
         $newpw_too_simple  = $newpassword && $pwextra
-            ? ($pwextra== 1 && !preg_match('!^.*(?=.*[\p{Lu}]).*(?=.*[\p{Ll}]).*$!u',$newpassword)
-              ? true
-              : $pwextra == 2 && !preg_match('!^.*(?=.*[\p{Lu}]).*(?=.*[\p{Ll}]).*(?=.*[\p{N}]).*$!u',$newpassword)
-              ? true
-              : false)
-            : false;
-        $newpw_forb_chars  = $newpassword && !preg_match('!^[^\"\\\\]*$!u',$newpassword) ? true : false;
+            && ($pwextra== 1 && !preg_match('!^.*(?=.*[\p{Lu}]).*(?=.*[\p{Ll}]).*$!u',$newpassword)
+                || $pwextra == 2 && !preg_match('!^.*(?=.*[\p{Lu}]).*(?=.*[\p{Ll}]).*(?=.*[\p{N}]).*$!u',$newpassword));        $newpw_forb_chars  = $newpassword && !preg_match('!^[^\"\\\\]*$!u',$newpassword) ? true : false;
 
         if ($newpassword && !$newpw_notmatching && !$newpw_too_short && !$newpw_too_simple && !$newpw_forb_chars
             && !$newpw_notmatching && $member[$i]['pass'] != $newpassword)
