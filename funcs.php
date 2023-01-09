@@ -137,7 +137,7 @@ function memberpages_ProcessList()
             list($day,$month,$year) = explode('.',$expires[$key]);
         } else $day = $month = $year = '';
 
-        $member[$key]['expires'] = mktime(0,0,0,$month,$day,$year);
+        $member[$key]['expires'] = mktime(0,0,0,(int)$month,(int)$day,(int)$year);
     }
 
 
@@ -312,9 +312,9 @@ function memberpages_NewPW()
         $newpassword = join("", $tmp);
         $newpassword = preg_replace_callback(
             '/[a-z|äöü]/i',
-            create_function('$m',
-                'return rand(0,1) ? $m[0] ^ str_pad("", strlen($m[0]), " ") : $m[0];
-            '),
+            function ($m) {
+                return rand(0,1) ? $m[0] ^ str_pad("", strlen($m[0]), " ") : $m[0];
+            },
             $newpassword
         );
     }
